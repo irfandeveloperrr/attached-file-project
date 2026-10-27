@@ -8,3 +8,4 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+- Page list and sidebar come from src/lib/nav.ts; add new pages there so navigation stays in one place.
