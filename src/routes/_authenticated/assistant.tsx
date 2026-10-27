@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Sparkles } from "lucide-react";
 import { PageHeader } from "@/components/PageScaffold";
 
-export const Route = createFileRoute("/assistant")({
+export const Route = createFileRoute("/_authenticated/assistant")({
   head: () => ({
     meta: [
       { title: "AI Assistant — Lucky MeeSeva" },

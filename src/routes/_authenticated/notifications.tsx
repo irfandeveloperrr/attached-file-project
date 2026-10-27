@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageScaffold } from "@/components/PageScaffold";
 
-export const Route = createFileRoute("/notifications")({
+export const Route = createFileRoute("/_authenticated/notifications")({
   head: () => ({
     meta: [
       { title: "Notifications — Lucky MeeSeva" },
