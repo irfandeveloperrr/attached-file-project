@@ -1,9 +1,22 @@
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
+import { useQueryClient } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 import { useState, type ReactNode } from "react";
-import { Bell, Menu, Plus, Search, PanelLeftClose, PanelLeft } from "lucide-react";
-import { NAV } from "@/lib/nav";
+import { Bell, LogOut, Menu, Plus, Search, PanelLeftClose, PanelLeft } from "lucide-react";
+import { navFor, type AppRole } from "@/lib/nav";
 
-export function AppShell({ children }: { children: ReactNode }) {
+export type Me = { id: string; email: string; name: string; phone: string; avatar: string | null; role: AppRole };
+
+export function AppShell({ children, me }: { children: ReactNode; me: Me }) {
+  const NAV = navFor(me.role);
+  const navigate = useNavigate();
+  const qc = useQueryClient();
+  async function signOut() {
+    await qc.cancelQueries();
+    qc.clear();
+    await supabase.auth.signOut();
+    navigate({ to: "/auth", replace: true });
+  }
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const path = useRouterState({ select: (s) => s.location.pathname });
@@ -67,7 +80,11 @@ export function AppShell({ children }: { children: ReactNode }) {
           <div className="ml-auto flex items-center gap-2">
             <Link to="/customers" className="hidden items-center gap-1 rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 sm:inline-flex"><Plus className="h-4 w-4" /> New customer</Link>
             <Link to="/notifications" aria-label="Notifications" className="rounded-md p-2 hover:bg-muted"><Bell className="h-5 w-5" /></Link>
-            <Link to="/login" className="grid h-9 w-9 place-items-center rounded-full bg-accent text-sm font-semibold text-accent-foreground">A</Link>
+            <Link to="/profile" title={me.name || me.email} className="flex items-center gap-2 rounded-full pr-2 hover:bg-muted">
+              {me.avatar ? <img src={me.avatar} alt="" className="h-9 w-9 rounded-full object-cover" /> : <span className="grid h-9 w-9 place-items-center rounded-full bg-accent text-sm font-semibold text-accent-foreground">{(me.name || me.email)[0]?.toUpperCase()}</span>}
+              <span className="hidden text-left leading-tight lg:block"><span className="block text-sm font-medium">{me.name || me.email}</span><span className="block text-xs capitalize text-muted-foreground">{me.role}</span></span>
+            </Link>
+            <button aria-label="Sign out" title="Sign out" onClick={signOut} className="rounded-md p-2 hover:bg-muted"><LogOut className="h-5 w-5" /></button>
           </div>
         </header>
         <main className="flex-1 p-4 md:p-8">{children}</main>
