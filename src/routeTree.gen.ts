@@ -11,10 +11,12 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApplicationsRouteImport } from './routes/applications'
+import { Route as AssistantRouteImport } from './routes/assistant'
 import { Route as AuditRouteImport } from './routes/audit'
 import { Route as CustomersRouteImport } from './routes/customers'
 import { Route as DocumentsRouteImport } from './routes/documents'
 import { Route as IncomeExpensesRouteImport } from './routes/income-expenses'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as ManagerRouteImport } from './routes/manager'
 import { Route as MyWorkRouteImport } from './routes/my-work'
 import { Route as NotificationsRouteImport } from './routes/notifications'
@@ -23,6 +25,7 @@ import { Route as ProfitLossRouteImport } from './routes/profit-loss'
 import { Route as ReportsRouteImport } from './routes/reports'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as StaffRouteImport } from './routes/staff'
+import { Route as SubscriptionRouteImport } from './routes/subscription'
 import { Route as TargetsRouteImport } from './routes/targets'
 
 const IndexRoute = IndexRouteImport.update({
@@ -33,6 +36,11 @@ const IndexRoute = IndexRouteImport.update({
 const ApplicationsRoute = ApplicationsRouteImport.update({
   id: '/applications',
   path: '/applications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AssistantRoute = AssistantRouteImport.update({
+  id: '/assistant',
+  path: '/assistant',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuditRoute = AuditRouteImport.update({
@@ -53,6 +61,11 @@ const DocumentsRoute = DocumentsRouteImport.update({
 const IncomeExpensesRoute = IncomeExpensesRouteImport.update({
   id: '/income-expenses',
   path: '/income-expenses',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ManagerRoute = ManagerRouteImport.update({
@@ -95,6 +108,11 @@ const StaffRoute = StaffRouteImport.update({
   path: '/staff',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SubscriptionRoute = SubscriptionRouteImport.update({
+  id: '/subscription',
+  path: '/subscription',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TargetsRoute = TargetsRouteImport.update({
   id: '/targets',
   path: '/targets',
@@ -104,10 +122,12 @@ const TargetsRoute = TargetsRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/applications': typeof ApplicationsRoute
+  '/assistant': typeof AssistantRoute
   '/audit': typeof AuditRoute
   '/customers': typeof CustomersRoute
   '/documents': typeof DocumentsRoute
   '/income-expenses': typeof IncomeExpensesRoute
+  '/login': typeof LoginRoute
   '/manager': typeof ManagerRoute
   '/my-work': typeof MyWorkRoute
   '/notifications': typeof NotificationsRoute
@@ -116,15 +136,18 @@ export interface FileRoutesByFullPath {
   '/reports': typeof ReportsRoute
   '/settings': typeof SettingsRoute
   '/staff': typeof StaffRoute
+  '/subscription': typeof SubscriptionRoute
   '/targets': typeof TargetsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/applications': typeof ApplicationsRoute
+  '/assistant': typeof AssistantRoute
   '/audit': typeof AuditRoute
   '/customers': typeof CustomersRoute
   '/documents': typeof DocumentsRoute
   '/income-expenses': typeof IncomeExpensesRoute
+  '/login': typeof LoginRoute
   '/manager': typeof ManagerRoute
   '/my-work': typeof MyWorkRoute
   '/notifications': typeof NotificationsRoute
@@ -133,16 +156,19 @@ export interface FileRoutesByTo {
   '/reports': typeof ReportsRoute
   '/settings': typeof SettingsRoute
   '/staff': typeof StaffRoute
+  '/subscription': typeof SubscriptionRoute
   '/targets': typeof TargetsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/applications': typeof ApplicationsRoute
+  '/assistant': typeof AssistantRoute
   '/audit': typeof AuditRoute
   '/customers': typeof CustomersRoute
   '/documents': typeof DocumentsRoute
   '/income-expenses': typeof IncomeExpensesRoute
+  '/login': typeof LoginRoute
   '/manager': typeof ManagerRoute
   '/my-work': typeof MyWorkRoute
   '/notifications': typeof NotificationsRoute
@@ -151,6 +177,7 @@ export interface FileRoutesById {
   '/reports': typeof ReportsRoute
   '/settings': typeof SettingsRoute
   '/staff': typeof StaffRoute
+  '/subscription': typeof SubscriptionRoute
   '/targets': typeof TargetsRoute
 }
 export interface FileRouteTypes {
@@ -158,10 +185,12 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/applications'
+    | '/assistant'
     | '/audit'
     | '/customers'
     | '/documents'
     | '/income-expenses'
+    | '/login'
     | '/manager'
     | '/my-work'
     | '/notifications'
@@ -170,15 +199,18 @@ export interface FileRouteTypes {
     | '/reports'
     | '/settings'
     | '/staff'
+    | '/subscription'
     | '/targets'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/applications'
+    | '/assistant'
     | '/audit'
     | '/customers'
     | '/documents'
     | '/income-expenses'
+    | '/login'
     | '/manager'
     | '/my-work'
     | '/notifications'
@@ -187,15 +219,18 @@ export interface FileRouteTypes {
     | '/reports'
     | '/settings'
     | '/staff'
+    | '/subscription'
     | '/targets'
   id:
     | '__root__'
     | '/'
     | '/applications'
+    | '/assistant'
     | '/audit'
     | '/customers'
     | '/documents'
     | '/income-expenses'
+    | '/login'
     | '/manager'
     | '/my-work'
     | '/notifications'
@@ -204,16 +239,19 @@ export interface FileRouteTypes {
     | '/reports'
     | '/settings'
     | '/staff'
+    | '/subscription'
     | '/targets'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ApplicationsRoute: typeof ApplicationsRoute
+  AssistantRoute: typeof AssistantRoute
   AuditRoute: typeof AuditRoute
   CustomersRoute: typeof CustomersRoute
   DocumentsRoute: typeof DocumentsRoute
   IncomeExpensesRoute: typeof IncomeExpensesRoute
+  LoginRoute: typeof LoginRoute
   ManagerRoute: typeof ManagerRoute
   MyWorkRoute: typeof MyWorkRoute
   NotificationsRoute: typeof NotificationsRoute
@@ -222,6 +260,7 @@ export interface RootRouteChildren {
   ReportsRoute: typeof ReportsRoute
   SettingsRoute: typeof SettingsRoute
   StaffRoute: typeof StaffRoute
+  SubscriptionRoute: typeof SubscriptionRoute
   TargetsRoute: typeof TargetsRoute
 }
 
@@ -239,6 +278,13 @@ declare module '@tanstack/react-router' {
       path: '/applications'
       fullPath: '/applications'
       preLoaderRoute: typeof ApplicationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/assistant': {
+      id: '/assistant'
+      path: '/assistant'
+      fullPath: '/assistant'
+      preLoaderRoute: typeof AssistantRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/audit': {
@@ -267,6 +313,13 @@ declare module '@tanstack/react-router' {
       path: '/income-expenses'
       fullPath: '/income-expenses'
       preLoaderRoute: typeof IncomeExpensesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/manager': {
@@ -325,6 +378,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StaffRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/subscription': {
+      id: '/subscription'
+      path: '/subscription'
+      fullPath: '/subscription'
+      preLoaderRoute: typeof SubscriptionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/targets': {
       id: '/targets'
       path: '/targets'
@@ -338,10 +398,12 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ApplicationsRoute: ApplicationsRoute,
+  AssistantRoute: AssistantRoute,
   AuditRoute: AuditRoute,
   CustomersRoute: CustomersRoute,
   DocumentsRoute: DocumentsRoute,
   IncomeExpensesRoute: IncomeExpensesRoute,
+  LoginRoute: LoginRoute,
   ManagerRoute: ManagerRoute,
   MyWorkRoute: MyWorkRoute,
   NotificationsRoute: NotificationsRoute,
@@ -350,6 +412,7 @@ const rootRouteChildren: RootRouteChildren = {
   ReportsRoute: ReportsRoute,
   SettingsRoute: SettingsRoute,
   StaffRoute: StaffRoute,
+  SubscriptionRoute: SubscriptionRoute,
   TargetsRoute: TargetsRoute,
 }
 export const routeTree = rootRouteImport
