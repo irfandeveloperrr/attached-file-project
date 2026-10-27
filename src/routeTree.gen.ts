@@ -30,6 +30,8 @@ import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticat
 import { Route as AuthenticatedStaffRouteImport } from './routes/_authenticated/staff'
 import { Route as AuthenticatedSubscriptionRouteImport } from './routes/_authenticated/subscription'
 import { Route as AuthenticatedTargetsRouteImport } from './routes/_authenticated/targets'
+import { Route as AuthenticatedApplicationIdRouteImport } from './routes/_authenticated/application.$id'
+import { Route as AuthenticatedCustomerIdRouteImport } from './routes/_authenticated/customer.$id'
 
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
@@ -139,6 +141,17 @@ const AuthenticatedTargetsRoute = AuthenticatedTargetsRouteImport.update({
   path: '/targets',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedApplicationIdRoute =
+  AuthenticatedApplicationIdRouteImport.update({
+    id: '/application/$id',
+    path: '/application/$id',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedCustomerIdRoute = AuthenticatedCustomerIdRouteImport.update({
+  id: '/customer/$id',
+  path: '/customer/$id',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof AuthenticatedIndexRoute
@@ -161,6 +174,8 @@ export interface FileRoutesByFullPath {
   '/staff': typeof AuthenticatedStaffRoute
   '/subscription': typeof AuthenticatedSubscriptionRoute
   '/targets': typeof AuthenticatedTargetsRoute
+  '/application/$id': typeof AuthenticatedApplicationIdRoute
+  '/customer/$id': typeof AuthenticatedCustomerIdRoute
 }
 export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
@@ -183,6 +198,8 @@ export interface FileRoutesByTo {
   '/subscription': typeof AuthenticatedSubscriptionRoute
   '/targets': typeof AuthenticatedTargetsRoute
   '/': typeof AuthenticatedIndexRoute
+  '/application/$id': typeof AuthenticatedApplicationIdRoute
+  '/customer/$id': typeof AuthenticatedCustomerIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -207,6 +224,8 @@ export interface FileRoutesById {
   '/_authenticated/subscription': typeof AuthenticatedSubscriptionRoute
   '/_authenticated/targets': typeof AuthenticatedTargetsRoute
   '/_authenticated/': typeof AuthenticatedIndexRoute
+  '/_authenticated/application/$id': typeof AuthenticatedApplicationIdRoute
+  '/_authenticated/customer/$id': typeof AuthenticatedCustomerIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -231,6 +250,8 @@ export interface FileRouteTypes {
     | '/staff'
     | '/subscription'
     | '/targets'
+    | '/application/$id'
+    | '/customer/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/auth'
@@ -253,6 +274,8 @@ export interface FileRouteTypes {
     | '/subscription'
     | '/targets'
     | '/'
+    | '/application/$id'
+    | '/customer/$id'
   id:
     | '__root__'
     | '/_authenticated'
@@ -276,6 +299,8 @@ export interface FileRouteTypes {
     | '/_authenticated/subscription'
     | '/_authenticated/targets'
     | '/_authenticated/'
+    | '/_authenticated/application/$id'
+    | '/_authenticated/customer/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -433,6 +458,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedTargetsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/application/$id': {
+      id: '/_authenticated/application/$id'
+      path: '/application/$id'
+      fullPath: '/application/$id'
+      preLoaderRoute: typeof AuthenticatedApplicationIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/customer/$id': {
+      id: '/_authenticated/customer/$id'
+      path: '/customer/$id'
+      fullPath: '/customer/$id'
+      preLoaderRoute: typeof AuthenticatedCustomerIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
@@ -455,6 +494,8 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedSubscriptionRoute: typeof AuthenticatedSubscriptionRoute
   AuthenticatedTargetsRoute: typeof AuthenticatedTargetsRoute
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
+  AuthenticatedApplicationIdRoute: typeof AuthenticatedApplicationIdRoute
+  AuthenticatedCustomerIdRoute: typeof AuthenticatedCustomerIdRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
@@ -476,6 +517,8 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedSubscriptionRoute: AuthenticatedSubscriptionRoute,
   AuthenticatedTargetsRoute: AuthenticatedTargetsRoute,
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
+  AuthenticatedApplicationIdRoute: AuthenticatedApplicationIdRoute,
+  AuthenticatedCustomerIdRoute: AuthenticatedCustomerIdRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
