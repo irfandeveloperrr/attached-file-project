@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageScaffold } from "@/components/PageScaffold";
 
-export const Route = createFileRoute("/targets")({
+export const Route = createFileRoute("/_authenticated/targets")({
   head: () => ({
     meta: [
       { title: "Targets & Performance — Lucky MeeSeva" },

@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader, EmptyCard } from "@/components/PageScaffold";
 
-export const Route = createFileRoute("/subscription")({
+export const Route = createFileRoute("/_authenticated/subscription")({
   head: () => ({
     meta: [
       { title: "Subscription — Lucky MeeSeva" },
